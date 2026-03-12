@@ -1,0 +1,293 @@
+@import url(https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif);
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+body {
+    background-color: #171720;
+}
+
+.top {
+    background-image: url('/images/hero-bg.webp');
+    background-size: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative;
+}
+
+    .logo {
+        width: 5%;
+        margin-left: 3rem;
+    }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .header .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 3rem;
+        gap: 2rem;
+    }
+
+        .header .list .item .item-link {
+            text-decoration: none;
+            color: #fbe093;
+            font-family: 'PT Sans';
+        }
+
+.top .title {
+    width: 30%;
+    margin: 1rem 0 2rem 6rem;
+    font-family: 'PT Serif';
+    color: #fce8b1;
+    font-weight: 100;
+    font-size: 520%;
+}
+
+.top .text {
+    width: 13%;
+    margin-left: 6rem;
+    color: #fce8b1;
+    font-family: 'PT Sans';
+    padding-bottom: 8rem;
+    line-height: 1.8;
+    font-size: 150%;
+}
+
+.mid {
+    background-color: #171720;
+}
+
+    .mid .description {
+        display: flex;
+        justify-content: space-around;
+        color: #fde8b1;
+        padding: 4rem 15rem 4rem 15rem;
+        border-bottom: 1px solid #fde8b1;
+    }
+
+        .mid .description .title {
+            font-family: 'PT Serif';
+            font-weight: 100;
+            font-size: 300%;
+            padding-bottom: 1.5rem;
+        }
+
+        .mid .description .text {
+            width: 90%;
+            font-family: 'PT Sans';
+            word-spacing: 2px;
+            font-size: 130%;
+            padding-bottom: 3rem;
+        }
+
+        .mid .description .button {
+            background-color: #171720;
+            border: 1px solid #b2784f;
+            color: #b2784f;
+            padding: 15px 32px;
+            text-align: center;
+        }
+
+    .mid .partners {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fde8b1;
+    }
+
+        .mid .partners .title {
+            font-family: 'PT Serif';
+            font-weight: 100;
+            font-size: 300%;
+            padding: 3rem 0 2rem 0;
+        }
+
+        .mid .partners .text1 {
+            font-family: 'PT Sans';
+            padding-bottom: 5rem;
+        }
+
+        .mid .partners .text2 {
+            font-family: 'PT Sans';
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+        }
+
+        .mid .partners .pictures {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 22px;
+        }
+
+            .mid .partners .pictures .partner1 {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 2rem;
+                width: 11rem;
+            }
+
+            .mid .partners .pictures .partner2 {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 2.1rem 2.5rem 2.1rem 2.5rem;
+                width: 10.5rem;
+            }
+
+.bot {
+    background-color: #fff8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .bot .title {
+        font-family: 'PT Sans';
+        font-weight: 100;
+        margin: 4rem 0 2rem 0;
+        color: #b0815b;
+        font-size: 300%;
+    }
+
+    .bot .text {
+        font-family: 'PT Sans';
+        font-weight: 100;
+        color: black;
+        font-size: 115%;
+        padding-bottom: 2rem;
+    }
+
+    .bot .matches {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 6rem;
+    }
+
+        .bot .matches .match {
+            background-color: #f4e3d0;
+            box-shadow: -4px 0 1px 0px rgba(176,130,92, 1);
+            font-family: 'PT Sans';
+            padding: 1rem 25rem 1rem 1.5rem;
+            font-size: 120%;
+            word-spacing: 2px;
+            border-radius: 5px;
+        }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+}
+
+    .footer .categories {
+        display: flex;
+        justify-content: start;
+        gap: 10rem;
+        padding-left: 25rem;
+        border-bottom: 1px solid #534b42;
+    }
+
+    .footer .title {
+        color: #fffffd;
+        font-weight: 100;
+        font-family: 'PT Serif';
+        font-size: 160%;
+        padding-bottom: 1.5rem;
+    }
+
+    .footer .text {
+        color: #af9e8b;
+        font-family: 'PT Sans';
+    }
+
+    .footer .category2,
+    .footer .category3,
+    .footer .category4 {
+        line-height: 1.8;
+    }
+
+    .footer .watermark {
+        padding: 1rem 0 4rem 25rem;
+        color: #af9e8b;
+        font-family: 'PT Sans';
+    }
+
+@media (max-width: 1700px) {
+    .top .title {
+        width: 30%;
+        font-size: 250%;
+    }
+
+    .top .text {
+        width: 50%;
+        color: #fce8b1;
+        margin-left: 6rem;
+        font-family: 'PT Sans';
+        padding-bottom: 8rem;
+        line-height: 1.8;
+        font-size: 150%;
+    }
+}
+
+@media (max-width: 1500px) {
+
+    .footer .title {
+        color: #fffffd;
+        font-weight: 100;
+        font-family: 'PT Serif';
+        font-size: 200%;
+        padding-bottom: 1.5rem;
+    }
+
+    .footer .text {
+        color: #af9e8b;
+        font-family: 'PT Sans';
+        font-size: 150%;
+    }
+
+    .footer .category1,
+    .footer .category2,
+    .footer .category3,
+    .footer .category4 {
+        width: 80%;
+        border-bottom: 1px solid #534b42;
+    }
+
+    .footer .categories {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0;
+        gap: 3rem;
+        border-bottom: 1px solid #534b42;
+    }
+}
+
+@media (max-width: 1050px) {
+    .mid .description {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 4rem 4rem 4rem;
+    }
+
+    .mission {
+        border-top: 1px solid #534b42;
+        padding-top: 2rem;
+        padding-bottom: 5rem;
+    }
+}
