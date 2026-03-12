@@ -454,3 +454,44 @@ body {
     .match-btn:hover {
         opacity: 0.85;
     }
+
+.bet-form {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.bet-select {
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 120px;
+}
+
+.bet-select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='14' width='14' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.bet-btn {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background: #2196f3;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .bet-btn:hover {
+        opacity: 0.85;
+    }
