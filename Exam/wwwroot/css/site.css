@@ -352,7 +352,6 @@ body {
     opacity: 0.8;
 }
 
-/* Optional button styling if you add CRUD later */
 .team-btn {
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
@@ -373,5 +372,85 @@ body {
     }
 
     .team-btn:hover {
+        opacity: 0.85;
+    }
+
+
+/* ============================
+   MATCHES PAGE STYLING
+   ============================ */
+
+.matches-container {
+    width: 80%;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.matches-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.match-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.match-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.25s ease;
+}
+
+    .match-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+    }
+
+.match-teams {
+    font-weight: 600;
+    color: #fff;
+}
+
+.match-info {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.match-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+    .match-btn.edit {
+        background: #4caf50;
+        color: white;
+    }
+
+    .match-btn.delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .match-btn:hover {
         opacity: 0.85;
     }
