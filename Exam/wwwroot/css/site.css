@@ -23,10 +23,10 @@ body {
     position: relative;
 }
 
-    .logo {
-        width: 5%;
-        margin-left: 3rem;
-    }
+.logo {
+    width: 5%;
+    margin-left: 3rem;
+}
 
 .header {
     display: flex;
