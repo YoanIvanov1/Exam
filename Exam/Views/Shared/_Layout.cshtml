@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="~/Exam.styles.css" asp-append-version="true" />
     </head>
     <body>
+        @if (!(ViewContext.RouteData.Values["controller"]?.ToString() == "Home"
+            && ViewContext.RouteData.Values["action"]?.ToString() == "Index"))
+        {
+            @await Html.PartialAsync("_Navbar")
+        }
+
         <main class="main">
             @RenderBody()
         </main>
