@@ -1,0 +1,497 @@
+@import url(https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif);
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+body {
+    background-color: #171720;
+}
+
+/* ============================
+   HOME PAGE STYLING
+   ============================ */
+
+.top {
+    background-image: url('/images/hero-bg.webp');
+    background-size: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative;
+}
+
+.logo {
+    width: 15%;
+    margin-left: 3rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .header .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 3rem;
+        gap: 3rem;
+    }
+
+        .header .list .item .item-link {
+            text-decoration: none;
+            color: #fbe093;
+            font-family: 'PT Sans';
+        }
+
+.top .title {
+    width: 30%;
+    margin: 1rem 0 2rem 6rem;
+    font-family: 'PT Serif';
+    color: #fce8b1;
+    font-weight: 100;
+    font-size: 520%;
+}
+
+.top .text {
+    width: 13%;
+    margin-left: 6rem;
+    color: #fce8b1;
+    font-family: 'PT Sans';
+    padding-bottom: 8rem;
+    line-height: 1.8;
+    font-size: 150%;
+}
+
+.mid {
+    background-color: #171720;
+}
+
+    .mid .description {
+        display: flex;
+        justify-content: space-around;
+        color: #fde8b1;
+        padding: 4rem 15rem 4rem 15rem;
+        border-bottom: 1px solid #fde8b1;
+    }
+
+        .mid .description .title {
+            font-family: 'PT Serif';
+            font-weight: 100;
+            font-size: 300%;
+            padding-bottom: 1.5rem;
+        }
+
+        .mid .description .text {
+            width: 90%;
+            font-family: 'PT Sans';
+            word-spacing: 2px;
+            font-size: 130%;
+            padding-bottom: 3rem;
+        }
+
+        .mid .description .button {
+            background-color: #171720;
+            border: 1px solid #b2784f;
+            color: #b2784f;
+            padding: 15px 32px;
+            text-align: center;
+        }
+
+    .mid .partners {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fde8b1;
+    }
+
+        .mid .partners .title {
+            font-family: 'PT Serif';
+            font-weight: 100;
+            font-size: 300%;
+            padding: 3rem 0 2rem 0;
+        }
+
+        .mid .partners .text1 {
+            font-family: 'PT Sans';
+            padding-bottom: 5rem;
+        }
+
+        .mid .partners .text2 {
+            font-family: 'PT Sans';
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+        }
+
+        .mid .partners .pictures {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 22px;
+        }
+
+            .mid .partners .pictures .partner1 {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 2rem;
+                width: 11rem;
+            }
+
+            .mid .partners .pictures .partner2 {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 2.1rem 2.5rem 2.1rem 2.5rem;
+                width: 10.5rem;
+            }
+
+.bot {
+    background-color: #fff8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .bot .title {
+        font-family: 'PT Sans';
+        font-weight: 100;
+        margin: 4rem 0 2rem 0;
+        color: #b0815b;
+        font-size: 300%;
+    }
+
+    .bot .text {
+        font-family: 'PT Sans';
+        font-weight: 100;
+        color: black;
+        font-size: 115%;
+        padding-bottom: 2rem;
+    }
+
+    .bot .matches {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 6rem;
+    }
+
+        .bot .matches .match {
+            background-color: #f4e3d0;
+            box-shadow: -4px 0 1px 0px rgba(176,130,92, 1);
+            font-family: 'PT Sans';
+            padding: 1rem 25rem 1rem 1.5rem;
+            font-size: 120%;
+            word-spacing: 2px;
+            border-radius: 5px;
+        }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+}
+
+    .footer .categories {
+        display: flex;
+        justify-content: start;
+        gap: 10rem;
+        padding-left: 25rem;
+        border-bottom: 1px solid #534b42;
+    }
+
+    .footer .title {
+        color: #fffffd;
+        font-weight: 100;
+        font-family: 'PT Serif';
+        font-size: 160%;
+        padding-bottom: 1.5rem;
+    }
+
+    .footer .text {
+        color: #af9e8b;
+        font-family: 'PT Sans';
+    }
+
+    .footer .category2,
+    .footer .category3,
+    .footer .category4 {
+        line-height: 1.8;
+    }
+
+    .footer .watermark {
+        padding: 1rem 0 4rem 25rem;
+        color: #af9e8b;
+        font-family: 'PT Sans';
+    }
+
+@media (max-width: 1700px) {
+    .top .title {
+        width: 30%;
+        font-size: 250%;
+    }
+
+    .top .text {
+        width: 50%;
+        color: #fce8b1;
+        margin-left: 6rem;
+        font-family: 'PT Sans';
+        padding-bottom: 8rem;
+        line-height: 1.8;
+        font-size: 150%;
+    }
+}
+
+@media (max-width: 1500px) {
+
+    .footer .title {
+        color: #fffffd;
+        font-weight: 100;
+        font-family: 'PT Serif';
+        font-size: 200%;
+        padding-bottom: 1.5rem;
+    }
+
+    .footer .text {
+        color: #af9e8b;
+        font-family: 'PT Sans';
+        font-size: 150%;
+    }
+
+    .footer .category1,
+    .footer .category2,
+    .footer .category3,
+    .footer .category4 {
+        width: 80%;
+        border-bottom: 1px solid #534b42;
+    }
+
+    .footer .categories {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0;
+        gap: 3rem;
+        border-bottom: 1px solid #534b42;
+    }
+}
+
+@media (max-width: 1050px) {
+    .mid .description {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 4rem 4rem 4rem;
+    }
+
+    .mission {
+        border-top: 1px solid #534b42;
+        padding-top: 2rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* ============================
+   TEAMS PAGE STYLING
+   ============================ */
+
+.teams-container {
+    width: 80%;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.teams-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.team-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.team-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.25s ease;
+}
+
+    .team-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+    }
+
+.team-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.team-meta {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.team-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+    .team-btn.edit {
+        background: #4caf50;
+        color: white;
+    }
+
+    .team-btn.delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .team-btn:hover {
+        opacity: 0.85;
+    }
+
+
+/* ============================
+   MATCHES PAGE STYLING
+   ============================ */
+
+.matches-container {
+    width: 80%;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.matches-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.match-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.match-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.25s ease;
+}
+
+    .match-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+    }
+
+.match-teams {
+    font-weight: 600;
+    color: #fff;
+}
+
+.match-info {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.match-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+    .match-btn.edit {
+        background: #4caf50;
+        color: white;
+    }
+
+    .match-btn.delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .match-btn:hover {
+        opacity: 0.85;
+    }
+
+.bet-form {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.bet-select {
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 120px;
+}
+
+.bet-select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='14' width='14' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.bet-btn {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background: #2196f3;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .bet-btn:hover {
+        opacity: 0.85;
+    }

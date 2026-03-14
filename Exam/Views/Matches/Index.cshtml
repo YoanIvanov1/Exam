@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Exam.Models.Match>
+
+<div class="matches-container">
+    <h1 class="matches-title">Upcoming Matches</h1>
+
+    <ul class="match-list">
+        @foreach (var match in Model)
+        {
+            <li class="match-item">
+                <span class="match-teams">@match.TeamA vs @match.TeamB</span>
+                <span class="match-info">@match.Date.ToString("MMMM dd, yyyy") — @match.Location</span>
+            
+                <form asp-action="PlaceBet" method="post" class="bet-form">
+                    <input type="hidden" name="id" value="@match.Id" />
+
+                    <select name="winner" class="bet-select">
+                        <option value="@match.TeamA">@match.TeamA</option>
+                        <option value="@match.TeamB">@match.TeamB</option>
+                    </select>
+
+                    <button type="submit" class="bet-btn">Bet</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>

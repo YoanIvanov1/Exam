@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Exam.Models.Match>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="top">
+    @await Html.PartialAsync("_Navbar")
+    <h1 class="title">Welcome to the E-Sports League Community</h1>
+    <p class="text">Join the action, follow your favorite teams, and be part of a global gaming movement. Our league    brings together passionate players and fans to celebrate competitive gaming at its best.</p>
+</section>
+
+<section class="mid">
+    <div class="description">
+        <div class="mission">
+            <h1 class="title">Our Mission</h1>
+            <p class="text">We aim to create a competitive but supportive environment for gamers worldwide. From casual players to professional athletes, everyone has a place in our league.</p>
+            <button class="button">Read more</button>
+        </div>
+        <div class="objectives">
+            <h1 class="title">Objectives</h1>
+            <p class="text">To host world-class tournaments, support aspiring talent, and grow a thriving e-sports ecosystem with fair play, innovation, and community at its heart.</p>
+            <button class="button">Read more</button>
+        </div>
+    </div>
+
+    <div class="partners">
+        <h1 class="title">Official Partners</h1>
+        <p class="text1">Thanks to our amazing brands for powering the league and supporting the future of competitive gaming.</p>
+        <div class="pictures">
+            <img src="~/images/partner1.webp" class="partner1" />
+            <img src="~/images/partner2.webp" class="partner2" />
+        </div>
+        <p class="text2">Our partners help us connect with players, fans, and communities worldwide to make every season unforgettable.</p>
+    </div>
+</section>
+
+<section class="bot">
+    <h1 class="title">Upcoming Matches</h1>
+    <p class="text">Don't miss the next battles!</p>
+    <div class="matches">
+        @foreach (var match in Model)
+        {
+            <span class="match">@match.TeamA vs @match.TeamB - @match.Date.ToString("MMMM dd, yyyy")</span>
+        }
+    </div>
+</section>

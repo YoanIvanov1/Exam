@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Exam.Models.Team>
+
+<div class="teams-container">
+    <h1 class="teams-title">Teams</h1>
+
+    <ul class="team-list">
+        @foreach (var team in Model)
+        {
+            <li class="team-item">
+                <span class="team-name">@team.Name</span>
+                <span class="team-meta">@team.Region — Rank @team.Ranking</span>
+            </li>
+        }
+    </ul>
+</div>
