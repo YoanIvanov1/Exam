@@ -16,7 +16,7 @@ namespace Exam.Models
         [StringLength(10)]
         public string Team { get; set; }
 
-        [Range(1, 100000)]
+        [Range(1, 5000)]
         public int Amount { get; set; }
 
         public DateTime PlacedAt { get; set; }
