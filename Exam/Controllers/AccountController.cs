@@ -20,12 +20,15 @@ public class AccountController : Controller
         _signInManager = signInManager;
     }
 
+    // GET: Profile page
     public async Task<IActionResult> Profile()
     {
         var user = await _userManager.GetUserAsync(User);
 
         if (user == null)
+        {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
 
         var bets = await _context.Bets
             .Where(b => b.UserId == user.Id)
@@ -42,6 +45,7 @@ public class AccountController : Controller
         return View(model);
     }
 
+    // POST: Logout
     [HttpPost]
     public async Task<IActionResult> Logout()
     {

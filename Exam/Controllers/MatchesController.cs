@@ -17,19 +17,26 @@ namespace Exam.Controllers
             _userManager = userManager;
         }
 
+        // GET: All matches
         public async Task<IActionResult> Index()
         {
-            var matches = await _context.Matches.OrderBy(m => m.Date).ToListAsync();
+            var matches = await _context.Matches
+                .OrderBy(m => m.Date)
+                .ToListAsync();
+
             return View(matches);
         }
 
+        // POST: Place a bet
         [HttpPost]
         public async Task<IActionResult> PlaceBet(int id, string winner, int amount)
         {
             var user = await _userManager.GetUserAsync(User);
 
             if (user == null)
+            {
                 return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
 
             if (amount <= 0)
             {

@@ -15,19 +15,31 @@ public class BetsController : Controller
         _userManager = userManager;
     }
 
+    // GET: Edit bet page
     public async Task<IActionResult> Edit(int id)
     {
         var user = await _userManager.GetUserAsync(User);
-        if (user == null) 
+
+        if (user == null)
+        {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
 
-        var bet = await _context.Bets.FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
-        if (bet == null) 
-            return NotFound();
+        var bet = await _context.Bets
+            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
 
-        var match = await _context.Matches.FirstOrDefaultAsync(m => m.Id == bet.MatchId);
-        if (match == null) 
+        if (bet == null)
+        {
             return NotFound();
+        }
+
+        var match = await _context.Matches
+            .FirstOrDefaultAsync(m => m.Id == bet.MatchId);
+
+        if (match == null)
+        {
+            return NotFound();
+        }
 
         ViewBag.TeamA = match.TeamA;
         ViewBag.TeamB = match.TeamB;
@@ -35,21 +47,32 @@ public class BetsController : Controller
         return View(bet);
     }
 
-
+    // POST: Edit bet
     [HttpPost]
     public async Task<IActionResult> Edit(Bet bet)
     {
         var user = await _userManager.GetUserAsync(User);
-        if (user == null) 
+
+        if (user == null)
+        {
             return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
 
-        var existingBet = await _context.Bets.FirstOrDefaultAsync(b => b.Id == bet.Id && b.UserId == user.Id);
-        if (existingBet == null) 
-            return NotFound();
+        var existingBet = await _context.Bets
+            .FirstOrDefaultAsync(b => b.Id == bet.Id && b.UserId == user.Id);
 
-        var match = await _context.Matches.FirstOrDefaultAsync(m => m.Id == existingBet.MatchId);
-        if (match == null) 
+        if (existingBet == null)
+        {
             return NotFound();
+        }
+
+        var match = await _context.Matches
+            .FirstOrDefaultAsync(m => m.Id == existingBet.MatchId);
+
+        if (match == null)
+        {
+            return NotFound();
+        }
 
         if (bet.Team != match.TeamA && bet.Team != match.TeamB)
         {
@@ -78,8 +101,10 @@ public class BetsController : Controller
         if (newAmount < 0)
         {
             ModelState.AddModelError("Amount", "Amount cannot be negative.");
+
             ViewBag.TeamA = match.TeamA;
             ViewBag.TeamB = match.TeamB;
+
             return View(bet);
         }
 
@@ -90,8 +115,10 @@ public class BetsController : Controller
             if (user.WalletBalance < difference)
             {
                 ModelState.AddModelError("Amount", "Not enough tokens to increase the bet.");
+
                 ViewBag.TeamA = match.TeamA;
                 ViewBag.TeamB = match.TeamB;
+
                 return View(bet);
             }
 
@@ -112,30 +139,45 @@ public class BetsController : Controller
         return RedirectToAction("Profile", "Account");
     }
 
-
+    // GET: Delete confirmation page
     public async Task<IActionResult> Delete(int id)
     {
         var user = await _userManager.GetUserAsync(User);
-        if (user == null) 
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
 
-        var bet = await _context.Bets.FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
-        if (bet == null) 
+        if (user == null)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+
+        var bet = await _context.Bets
+            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
+
+        if (bet == null)
+        {
             return NotFound();
+        }
 
         return View(bet);
     }
 
+    // POST: Delete bet
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var user = await _userManager.GetUserAsync(User);
-        if (user == null) 
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
 
-        var bet = await _context.Bets.FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
-        if (bet == null) 
+        if (user == null)
+        {
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+        }
+
+        var bet = await _context.Bets
+            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
+
+        if (bet == null)
+        {
             return NotFound();
+        }
 
         user.WalletBalance += bet.Amount;
         await _userManager.UpdateAsync(user);
