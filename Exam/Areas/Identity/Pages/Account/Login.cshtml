@@ -1,0 +1,47 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-container">
+    <h2 class="auth-title">Login</h2>
+
+    <form method="post" class="auth-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="auth-field">
+            <label asp-for="Input.Email"></label>
+            <input asp-for="Input.Email" autocomplete="username" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="auth-field">
+            <label asp-for="Input.Password"></label>
+            <input asp-for="Input.Password" autocomplete="current-password" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div class="auth-field checkbox-field">
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
+        </div>
+
+        <button type="submit" class="auth-btn">Sign In</button>
+
+        <p class="auth-alt">
+            <a asp-page="./ForgotPassword">Forgot your password</a>
+        </p>
+
+        <p class="auth-alt">
+            Don't have an account?
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
+        </p>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
