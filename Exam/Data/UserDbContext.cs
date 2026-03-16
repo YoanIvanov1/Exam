@@ -10,5 +10,7 @@ namespace Exam.Data
             :base(options)
         {   
         }
+
+        public DbSet<Bet> Bets { get; set; }
     }
 }
