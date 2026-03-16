@@ -8,25 +8,26 @@ namespace Exam.Controllers
 {
     public class MatchesController : Controller
     {
-        private readonly UserDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        private static List<Match> matches = new List<Match>
+        /* private static List<Match> matches = new List<Match>
         {
             new Match { Id = 1, TeamA = "LR", TeamB = "G2", Date = new DateTime(2024, 7, 15), Location = "Stadium A" },
             new Match { Id = 2, TeamA = "KC", TeamB = "MKOI", Date = new DateTime(2024, 7, 16), Location = "Stadium B" },
             new Match { Id = 3, TeamA = "LR", TeamB = "KC", Date = new DateTime(2024, 7, 17), Location = "Stadium C" },
             new Match { Id = 4, TeamA = "G2", TeamB = "MKOI", Date = new DateTime(2024, 7, 18), Location = "Stadium D" }
-        };
+        }; */
 
-        public MatchesController(UserDbContext context, UserManager<User> userManager)
+        public MatchesController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var matches = await _context.Matches.OrderBy(m => m.Date).ToListAsync();
             return View(matches);
         }
 
@@ -53,10 +54,18 @@ namespace Exam.Controllers
             user.WalletBalance -= amount;
             await _userManager.UpdateAsync(user);
 
+            var match = await _context.Matches.FindAsync(id);
+
+            if (match == null)
+            {
+                TempData["Error"] = "Match not found.";
+                return RedirectToAction("Index");
+            }
+
             var bet = new Bet
             {
                 UserId = user.Id,
-                MatchId = id,
+                MatchId = match.Id,
                 Team = winner,
                 Amount = amount,
                 PlacedAt = DateTime.UtcNow

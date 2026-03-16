@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 public class AccountController : Controller
 {
     private readonly UserManager<User> _userManager;
-    private readonly UserDbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly SignInManager<User> _signInManager;
 
     public AccountController(
         UserManager<User> userManager,
-        UserDbContext context,
+        ApplicationDbContext context,
         SignInManager<User> signInManager)
     {
         _userManager = userManager;

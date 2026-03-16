@@ -11,7 +11,5 @@
         public DateTime Date { get; set; }
 
         public string Location { get; set; }
-
-        public string SelectedWinner { get; set; }
     }
 }
