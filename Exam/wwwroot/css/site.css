@@ -179,27 +179,10 @@ body {
                 box-shadow: 0 0 22px rgba(240, 184, 76, 0.4);
             }
 
-    .bot .text {
-        font-family: 'PT Sans';
-        font-weight: 100;
-        color: black;
-        font-size: 115%;
-        padding-bottom: 2rem;
-    }
 
 /* ============================
    FOOTER
    ============================ */
-
-        .bot .matches .match {
-            background-color: #f4e3d0;
-            box-shadow: -4px 0 1px 0px rgba(176,130,92, 1);
-            font-family: 'PT Sans';
-            padding: 1rem 25rem 1rem 1.5rem;
-            font-size: 120%;
-            word-spacing: 2px;
-            border-radius: 5px;
-        }
 
 .footer {
     display: flex;
@@ -262,7 +245,6 @@ body {
 }
 
 @media (max-width: 1500px) {
-
     .footer .title {
         font-size: 1.6rem;
     }
@@ -281,7 +263,6 @@ body {
     }
 
     .footer .categories {
-        display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -393,13 +374,11 @@ body {
 
     .team-btn.delete {
         background: #e53935;
-        color: white;
     }
 
     .team-btn:hover {
         opacity: 0.85;
     }
-
 
 /* ============================
    MATCHES PAGE STYLING
@@ -476,7 +455,6 @@ body {
 
     .match-btn.delete {
         background: #e53935;
-        color: white;
     }
 
     .match-btn:hover {

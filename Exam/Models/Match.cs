@@ -19,7 +19,5 @@ namespace Exam.Models
 
         [StringLength(50)]
         public string Location { get; set; }
-
-        public string SelectedWinner { get; set; }
     }
 }
