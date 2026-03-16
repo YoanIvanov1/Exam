@@ -29,6 +29,7 @@ Teams are stored in the database and displayed on the Teams page.
 
 
 --Technologies Used--
+
 ASP.NET Core MVC
 
 Entity Framework Core
@@ -43,6 +44,7 @@ Custom CSS
 
 
 --How to Run the Project--
+
 1. Clone the repository.
 
 2. Open the solution in Visual Studio 2022 or later.
