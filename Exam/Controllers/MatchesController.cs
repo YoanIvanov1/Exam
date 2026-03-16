@@ -11,14 +11,6 @@ namespace Exam.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        /* private static List<Match> matches = new List<Match>
-        {
-            new Match { Id = 1, TeamA = "LR", TeamB = "G2", Date = new DateTime(2024, 7, 15), Location = "Stadium A" },
-            new Match { Id = 2, TeamA = "KC", TeamB = "MKOI", Date = new DateTime(2024, 7, 16), Location = "Stadium B" },
-            new Match { Id = 3, TeamA = "LR", TeamB = "KC", Date = new DateTime(2024, 7, 17), Location = "Stadium C" },
-            new Match { Id = 4, TeamA = "G2", TeamB = "MKOI", Date = new DateTime(2024, 7, 18), Location = "Stadium D" }
-        }; */
-
         public MatchesController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
@@ -74,8 +66,7 @@ namespace Exam.Controllers
             _context.Bets.Add(bet);
             await _context.SaveChangesAsync();
 
-            TempData["Success"] = "Bet placed successfully!";
-            return RedirectToAction("Index");
+            return RedirectToAction("Profile", "Account");
         }
     }
 }

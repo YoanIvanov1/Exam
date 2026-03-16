@@ -45,10 +45,10 @@
                         <p><strong>Team:</strong> @bet.Team</p>
                         <p><strong>Amount:</strong> @bet.Amount tokens</p>
                     </div>
-                </div>
 
-                <div class="bet-actions">
-                    <a asp-controller="Bets" asp-action="Edit" asp-route-id="@bet.Id" class="edit-btn">Edit Bet</a>
+                    <div class="bet-actions">
+                        <a asp-controller="Bets" asp-action="Edit" asp-route-id="@bet.Id" class="edit-btn">Edit Bet</a>
+                    </div>
                 </div>
             }
         }
