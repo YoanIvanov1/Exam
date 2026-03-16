@@ -1,0 +1,53 @@
+﻿@model ProfileViewModel
+
+<div class="profile-wrapper">
+
+    <div class="profile-header">
+        <h1 class="profile-title">Player Profile</h1>
+
+        <form asp-action="Logout" method="post">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="profile-info-card">
+        <h2 class="info-title">Account Details</h2>
+
+        <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value">@Model.Email</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Wallet Balance:</span>
+            <span class="info-value highlight">@Model.WalletBalance tokens</span>
+        </div>
+    </div>
+
+    <h2 class="bets-title">Your Bets</h2>
+
+    <div class="bets-container">
+        @if (Model.Bets.Count == 0)
+        {
+            <p class="no-bets">You haven't placed any bets yet.</p>
+        }
+        else
+        {
+            @foreach (var bet in Model.Bets)
+            {
+                <div class="bet-card">
+                    <div class="bet-header">
+                        <span class="bet-match">Match #@bet.MatchId</span>
+                        <span class="bet-date">@bet.PlacedAt.ToString("MMM dd, yyyy")</span>
+                    </div>
+
+                    <div class="bet-body">
+                        <p><strong>Team:</strong> @bet.Team</p>
+                        <p><strong>Amount:</strong> @bet.Amount tokens</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+</div>

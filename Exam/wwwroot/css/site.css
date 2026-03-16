@@ -606,3 +606,130 @@ body {
         padding: 2rem;
     }
 }
+
+/* ============================
+   PROFILE PAGE STYLING
+   ============================ */
+
+.profile-wrapper {
+    width: 70%;
+    margin: 4rem auto;
+    color: #fde8b1;
+    font-family: 'PT Sans';
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-title {
+    font-family: 'PT Serif';
+    font-size: 300%;
+    font-weight: 100;
+    color: #fce8b1;
+}
+
+.logout-btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    background: #e53935;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+    .logout-btn:hover {
+        opacity: 0.85;
+    }
+
+.profile-info-card {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    margin-top: 2rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+}
+
+.info-title {
+    font-family: 'PT Serif';
+    font-size: 200%;
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.info-label {
+    font-weight: bold;
+    color: #fbe093;
+}
+
+.info-value {
+    color: #fff;
+}
+
+.highlight {
+    color: #b2784f;
+    font-weight: bold;
+}
+
+.bets-title {
+    font-family: 'PT Serif';
+    font-size: 240%;
+    margin: 3rem 0 1rem 0;
+    color: #fce8b1;
+}
+
+.bets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.no-bets {
+    color: #fbe093;
+    font-size: 1.2rem;
+}
+
+.bet-card {
+    background: rgba(255,255,255,0.08);
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    transition: 0.25s ease;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+    .bet-card:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-4px);
+    }
+
+.bet-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.bet-match {
+    font-weight: bold;
+    color: #fff;
+}
+
+.bet-date {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.bet-body p {
+    margin: 0.3rem 0;
+}
