@@ -733,3 +733,136 @@ body {
 .bet-body p {
     margin: 0.3rem 0;
 }
+
+.bet-actions {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    color: #fbe093;
+    font-family: 'PT Sans';
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    transition: 0.25s ease;
+}
+
+    .edit-btn:hover {
+        background: rgba(255,255,255,0.18);
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 0 12px rgba(255,255,255,0.15);
+    }
+
+/* ============================
+   BET CRUD PAGES (EDIT / DELETE)
+   ============================ */
+
+.bet-crud-wrapper {
+    width: 60%;
+    margin: 4rem auto;
+    background: rgba(255,255,255,0.05);
+    padding: 2.5rem;
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    color: #fde8b1;
+    font-family: 'PT Sans';
+}
+
+.bet-crud-title {
+    font-family: 'PT Serif';
+    font-size: 260%;
+    font-weight: 100;
+    color: #fce8b1;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.bet-crud-form label {
+    font-size: 1.1rem;
+    color: #fbe093;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.bet-crud-form input,
+.bet-crud-form select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+    .bet-crud-form input:focus,
+    .bet-crud-form select:focus {
+        outline: none;
+        border-color: #b2784f;
+        box-shadow: 0 0 6px rgba(178,120,79,0.6);
+    }
+
+.bet-crud-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.bet-btn-save {
+    padding: 0.9rem 1.6rem;
+    border-radius: 10px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+    .bet-btn-save:hover {
+        opacity: 0.85;
+    }
+
+.bet-btn-delete {
+    padding: 0.9rem 1.6rem;
+    border-radius: 10px;
+    border: none;
+    background: #e53935;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-decoration: none;
+}
+
+    .bet-btn-delete:hover {
+        opacity: 0.85;
+    }
+
+.bet-btn-cancel {
+    padding: 0.9rem 1.6rem;
+    border-radius: 10px;
+    border: none;
+    background: #bdc3c7;
+    color: #333;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.delete-info-box {
+    background: rgba(255,255,255,0.08);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: #fde8b1;
+}

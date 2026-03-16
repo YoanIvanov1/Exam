@@ -1,16 +1,20 @@
 ﻿@model Bet
 
-<h2>Delete Bet</h2>
+<div class="bet-crud-wrapper">
+    <h2 class="bet-crud-title">Delete Bet</h2>
 
-<p>Are you sure you want to delete this bet?</p>
+    <div class="delete-info-box">
+        <p><strong>Team:</strong> @Model.Team</p>
+        <p><strong>Amount:</strong> @Model.Amount tokens</p>
+        <p>Deleting this bet will refund the full amount to your wallet.</p>
+    </div>
 
-<div>
-    <strong>Team:</strong> @Model.Team <br />
-    <strong>Amount:</strong> @Model.Amount tokens
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="bet-crud-actions">
+            <button type="submit" class="bet-btn-delete">Delete</button>
+            <a asp-controller="Account" asp-action="Profile" class="bet-btn-cancel">Cancel</a>
+        </div>
+    </form>
 </div>
-
-<form asp-action="DeleteConfirmed" method="post">
-    <input type="hidden" name="id" value="@Model.Id" />
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a asp-controller="Account" asp-action="Profile" class="btn btn-secondary">Cancel</a>
-</form>
