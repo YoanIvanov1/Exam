@@ -13,5 +13,6 @@ namespace Exam.Data
 
         public DbSet<Match> Matches { get; set; }
         public DbSet<Bet> Bets { get; set; }
+        public DbSet<Team> Teams { get; set; }
     }
 }

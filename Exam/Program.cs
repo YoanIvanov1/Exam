@@ -43,6 +43,18 @@ using (var scope = app.Services.CreateScope())
 
         db.SaveChanges();
     }
+
+    if (!db.Teams.Any())
+    {
+        db.Teams.AddRange(
+            new Team { Name = "LR", Region = "Europe", Ranking = 1 },
+            new Team { Name = "G2", Region = "Europe", Ranking = 2 },
+            new Team { Name = "MKOI", Region = "Europe", Ranking = 3 },
+            new Team { Name = "KC", Region = "Europe", Ranking = 4 }
+        );
+
+        db.SaveChanges();
+    }
 }
 
 app.UseHttpsRedirection();
