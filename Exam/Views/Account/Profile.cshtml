@@ -46,6 +46,10 @@
                         <p><strong>Amount:</strong> @bet.Amount tokens</p>
                     </div>
                 </div>
+
+                <div class="bet-actions">
+                    <a asp-controller="Bets" asp-action="Edit" asp-route-id="@bet.Id" class="edit-btn">Edit</a>
+                </div>
             }
         }
     </div>

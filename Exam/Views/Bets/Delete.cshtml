@@ -1,0 +1,16 @@
+﻿@model Bet
+
+<h2>Delete Bet</h2>
+
+<p>Are you sure you want to delete this bet?</p>
+
+<div>
+    <strong>Team:</strong> @Model.Team <br />
+    <strong>Amount:</strong> @Model.Amount tokens
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Account" asp-action="Profile" class="btn btn-secondary">Cancel</a>
+</form>
