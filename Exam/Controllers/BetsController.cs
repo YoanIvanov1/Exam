@@ -76,8 +76,6 @@ public class BetsController : Controller
 
         if (bet.Team != match.TeamA && bet.Team != match.TeamB)
         {
-            ModelState.AddModelError("Team", "Invalid team selection.");
-
             ViewBag.TeamA = match.TeamA;
             ViewBag.TeamB = match.TeamB;
 
@@ -100,8 +98,6 @@ public class BetsController : Controller
 
         if (newAmount < 0)
         {
-            ModelState.AddModelError("Amount", "Amount cannot be negative.");
-
             ViewBag.TeamA = match.TeamA;
             ViewBag.TeamB = match.TeamB;
 
@@ -110,12 +106,18 @@ public class BetsController : Controller
 
         int difference = newAmount - oldAmount;
 
+        if (difference < 0)
+        {
+            ViewBag.TeamA = match.TeamA;
+            ViewBag.TeamB = match.TeamB;
+
+            return View(bet);
+        }
+
         if (difference > 0)
         {
             if (user.WalletBalance < difference)
             {
-                ModelState.AddModelError("Amount", "Not enough tokens to increase the bet.");
-
                 ViewBag.TeamA = match.TeamA;
                 ViewBag.TeamB = match.TeamB;
 
@@ -123,10 +125,6 @@ public class BetsController : Controller
             }
 
             user.WalletBalance -= difference;
-        }
-        else if (difference < 0)
-        {
-            user.WalletBalance += Math.Abs(difference);
         }
 
         await _userManager.UpdateAsync(user);
