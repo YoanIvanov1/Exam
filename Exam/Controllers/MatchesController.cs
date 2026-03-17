@@ -40,13 +40,11 @@ namespace Exam.Controllers
 
             if (amount <= 0)
             {
-                TempData["Error"] = "Invalid bet amount.";
                 return RedirectToAction("Index");
             }
 
             if (user.WalletBalance < amount)
             {
-                TempData["Error"] = "You don't have enough tokens!";
                 return RedirectToAction("Index");
             }
 
@@ -54,12 +52,6 @@ namespace Exam.Controllers
             await _userManager.UpdateAsync(user);
 
             var match = await _context.Matches.FindAsync(id);
-
-            if (match == null)
-            {
-                TempData["Error"] = "Match not found.";
-                return RedirectToAction("Index");
-            }
 
             var bet = new Bet
             {
