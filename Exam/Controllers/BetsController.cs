@@ -106,14 +106,6 @@ public class BetsController : Controller
 
         int difference = newAmount - oldAmount;
 
-        if (difference < 0)
-        {
-            ViewBag.TeamA = match.TeamA;
-            ViewBag.TeamB = match.TeamB;
-
-            return View(bet);
-        }
-
         if (difference > 0)
         {
             if (user.WalletBalance < difference)
@@ -125,6 +117,10 @@ public class BetsController : Controller
             }
 
             user.WalletBalance -= difference;
+        }
+        else if (difference < 0)
+        {
+            user.WalletBalance += Math.Abs(difference);
         }
 
         await _userManager.UpdateAsync(user);

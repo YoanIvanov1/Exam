@@ -53,11 +53,6 @@ namespace Exam.Controllers
 
             var match = await _context.Matches.FindAsync(id);
 
-            if (match == null)
-            {
-                return RedirectToAction("Index");
-            }
-
             var bet = new Bet
             {
                 UserId = user.Id,
