@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Exam.Models.Match>
+﻿@model IEnumerable<MatchViewModel>
+
+@{
+    ViewData["Title"] = "Matches";
+}
 
 <div class="matches-container">
     <h1 class="matches-title">Upcoming Matches</h1>
@@ -10,18 +14,7 @@
                 <span class="match-teams">@match.TeamA vs @match.TeamB</span>
                 <span class="match-info">@match.Date.ToString("MMMM dd, yyyy") — @match.Location</span>
 
-                <form asp-action="PlaceBet" method="post" class="bet-form">
-                    <input type="hidden" name="id" value="@match.Id" />
-
-                    <select name="winner" class="bet-select">
-                        <option value="@match.TeamA">@match.TeamA</option>
-                        <option value="@match.TeamB">@match.TeamB</option>
-                    </select>
-
-                    <input type="number" name="amount" class="bet-amount" min="1" max="5000" placeholder="Tokens" required />
-
-                    <button type="submit" class="bet-btn">Bet</button>
-                </form>
+                <a asp-controller="Bets" asp-action="Create" asp-route-matchId="@match.Id" class="bet-btn">Place Bet</a>
             </li>
         }
     </ul>

@@ -1,184 +1,129 @@
-﻿using Exam.Data;
-using Exam.Models;
+﻿using Exam.Models;
+using Exam.Services.Contracts;
+using Exam.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-public class BetsController : Controller
+namespace Exam.Controllers
 {
-    private readonly ApplicationDbContext _context;
-    private readonly UserManager<User> _userManager;
-
-    public BetsController(ApplicationDbContext context, UserManager<User> userManager)
+    [Authorize]
+    public class BetsController : Controller
     {
-        _context = context;
-        _userManager = userManager;
-    }
+        private readonly IBetService _betService;
+        private readonly UserManager<User> _userManager;
 
-    // GET: Edit bet page
-    public async Task<IActionResult> Edit(int id)
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
+        public BetsController(IBetService betService, UserManager<User> userManager)
         {
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
+            _betService = betService;
+            _userManager = userManager;
         }
 
-        var bet = await _context.Bets
-            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
+        private string CurrentUserId => _userManager.GetUserId(User)!;
 
-        if (bet == null)
+        // GET: All bets of the current user
+        public async Task<IActionResult> Index()
         {
-            return NotFound();
+            var bets = await _betService.GetUserBetsAsync(CurrentUserId);
+
+            return View(bets);
         }
 
-        var match = await _context.Matches
-            .FirstOrDefaultAsync(m => m.Id == bet.MatchId);
-
-        if (match == null)
+        // GET: Place bet page
+        public async Task<IActionResult> Create(int matchId)
         {
-            return NotFound();
-        }
+            var model = await _betService.GetCreateFormAsync(matchId);
 
-        ViewBag.TeamA = match.TeamA;
-        ViewBag.TeamB = match.TeamB;
-
-        return View(bet);
-    }
-
-    // POST: Edit bet
-    [HttpPost]
-    public async Task<IActionResult> Edit(Bet bet)
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
-        {
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
-        }
-
-        var existingBet = await _context.Bets
-            .FirstOrDefaultAsync(b => b.Id == bet.Id && b.UserId == user.Id);
-
-        if (existingBet == null)
-        {
-            return NotFound();
-        }
-
-        var match = await _context.Matches
-            .FirstOrDefaultAsync(m => m.Id == existingBet.MatchId);
-
-        if (match == null)
-        {
-            return NotFound();
-        }
-
-        if (bet.Team != match.TeamA && bet.Team != match.TeamB)
-        {
-            ViewBag.TeamA = match.TeamA;
-            ViewBag.TeamB = match.TeamB;
-
-            return View(bet);
-        }
-
-        int oldAmount = existingBet.Amount;
-        int newAmount = bet.Amount;
-
-        if (newAmount == 0)
-        {
-            user.WalletBalance += oldAmount;
-            await _userManager.UpdateAsync(user);
-
-            _context.Bets.Remove(existingBet);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Profile", "Account");
-        }
-
-        if (newAmount < 0)
-        {
-            ViewBag.TeamA = match.TeamA;
-            ViewBag.TeamB = match.TeamB;
-
-            return View(bet);
-        }
-
-        int difference = newAmount - oldAmount;
-
-        if (difference > 0)
-        {
-            if (user.WalletBalance < difference)
+            if (model == null)
             {
-                ViewBag.TeamA = match.TeamA;
-                ViewBag.TeamB = match.TeamB;
-
-                return View(bet);
+                return NotFound();
             }
 
-            user.WalletBalance -= difference;
+            return View(model);
         }
-        else if (difference < 0)
+
+        // POST: Place bet
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(BetFormViewModel model)
         {
-            user.WalletBalance += Math.Abs(difference);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var error = await _betService.CreateAsync(model, CurrentUserId);
+
+            if (error != null)
+            {
+                ModelState.AddModelError(string.Empty, error);
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        await _userManager.UpdateAsync(user);
-
-        existingBet.Team = bet.Team;
-        existingBet.Amount = bet.Amount;
-
-        await _context.SaveChangesAsync();
-
-        return RedirectToAction("Profile", "Account");
-    }
-
-    // GET: Delete confirmation page
-    public async Task<IActionResult> Delete(int id)
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
+        // GET: Edit bet page
+        public async Task<IActionResult> Edit(int id)
         {
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
+            var model = await _betService.GetEditFormAsync(id, CurrentUserId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
         }
 
-        var bet = await _context.Bets
-            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
-
-        if (bet == null)
+        // POST: Edit bet
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(BetFormViewModel model)
         {
-            return NotFound();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var error = await _betService.EditAsync(model, CurrentUserId);
+
+            if (error != null)
+            {
+                ModelState.AddModelError(string.Empty, error);
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        return View(bet);
-    }
-
-    // POST: Delete bet
-    [HttpPost]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
+        // GET: Delete confirmation page
+        public async Task<IActionResult> Delete(int id)
         {
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
+            var model = await _betService.GetUserBetAsync(id, CurrentUserId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
         }
 
-        var bet = await _context.Bets
-            .FirstOrDefaultAsync(b => b.Id == id && b.UserId == user.Id);
-
-        if (bet == null)
+        // POST: Delete bet
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            return NotFound();
+            var deleted = await _betService.DeleteAsync(id, CurrentUserId);
+
+            if (!deleted)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
-
-        user.WalletBalance += bet.Amount;
-        await _userManager.UpdateAsync(user);
-
-        _context.Bets.Remove(bet);
-        await _context.SaveChangesAsync();
-
-        return RedirectToAction("Profile", "Account");
     }
 }

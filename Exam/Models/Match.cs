@@ -8,16 +8,18 @@ namespace Exam.Models
 
         [Required]
         [StringLength(10)]
-        public string TeamA { get; set; }
+        public string TeamA { get; set; } = null!;
 
         [Required]
         [StringLength(10)]
-        public string TeamB { get; set; }
+        public string TeamB { get; set; } = null!;
 
         [Required]
         public DateTime Date { get; set; }
 
         [StringLength(50)]
-        public string Location { get; set; }
+        public string Location { get; set; } = null!;
+
+        public ICollection<Bet> Bets { get; set; } = new List<Bet>();
     }
 }

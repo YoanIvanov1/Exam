@@ -1,27 +1,33 @@
-using Exam.Data;
-using Exam.Models;
+﻿using Exam.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace Exam.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IMatchService _matchService;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(IMatchService matchService)
         {
-            _context = context;
+            _matchService = matchService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var matches = await _context.Matches
-                .OrderBy(m => m.Date)
-                .ToListAsync();
+            var matches = await _matchService.GetAllAsync();
 
             return View(matches);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }

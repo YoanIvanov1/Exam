@@ -14,5 +14,12 @@ namespace Exam.Data
         public DbSet<Match> Matches { get; set; }
         public DbSet<Bet> Bets { get; set; }
         public DbSet<Team> Teams { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        }
     }
 }

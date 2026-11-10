@@ -7,5 +7,7 @@ namespace Exam.Models
     {
         [Range(0, 999999)]
         public int WalletBalance { get; set; } = 5000;
+
+        public ICollection<Bet> Bets { get; set; } = new List<Bet>();
     }
 }

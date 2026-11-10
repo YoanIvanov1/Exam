@@ -1,0 +1,19 @@
+﻿@model BetFormViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<input type="hidden" asp-for="Id" />
+<input type="hidden" asp-for="MatchId" />
+<input type="hidden" asp-for="TeamA" />
+<input type="hidden" asp-for="TeamB" />
+
+<label asp-for="Team">Team</label>
+<select asp-for="Team">
+    <option value="@Model.TeamA">@Model.TeamA</option>
+    <option value="@Model.TeamB">@Model.TeamB</option>
+</select>
+<span asp-validation-for="Team" class="text-danger"></span>
+
+<label asp-for="Amount"></label>
+<input asp-for="Amount" />
+<span asp-validation-for="Amount" class="text-danger"></span>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BetViewModel>
+
+@{
+    ViewData["Title"] = "My Bets";
+}
+
+<div class="profile-wrapper">
+    <h1 class="bets-title">My Bets</h1>
+
+    <div class="bets-container">
+        @if (!Model.Any())
+        {
+            <p class="no-bets">
+                You haven't placed any bets yet.
+                <a asp-controller="Matches" asp-action="Index">Browse matches</a>
+            </p>
+        }
+        else
+        {
+            @foreach (var bet in Model)
+            {
+                <div class="bet-card">
+                    <div class="bet-header">
+                        <span class="bet-match">@bet.MatchTitle (@bet.MatchDate.ToString("MMM dd, yyyy"))</span>
+                        <span class="bet-date">Placed on @bet.PlacedAt.ToString("MMM dd, yyyy")</span>
+                    </div>
+
+                    <div class="bet-body">
+                        <p><strong>Team:</strong> @bet.Team</p>
+                        <p><strong>Amount:</strong> @bet.Amount tokens</p>
+                    </div>
+
+                    <div class="bet-actions">
+                        <a asp-action="Edit" asp-route-id="@bet.Id" class="edit-btn">Edit Bet</a>
+                        <a asp-action="Delete" asp-route-id="@bet.Id" class="bet-btn-delete">Delete</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

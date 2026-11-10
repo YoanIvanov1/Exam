@@ -46,9 +46,13 @@ namespace Exam.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MatchId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bets");
                 });
@@ -69,10 +73,6 @@ namespace Exam.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("SelectedWinner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TeamA")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -86,6 +86,40 @@ namespace Exam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Matches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Stadium A",
+                            TeamA = "LR",
+                            TeamB = "G2"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2024, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Stadium B",
+                            TeamA = "KC",
+                            TeamB = "MKOI"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = new DateTime(2024, 7, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Stadium C",
+                            TeamA = "LR",
+                            TeamB = "KC"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Date = new DateTime(2024, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Stadium D",
+                            TeamA = "G2",
+                            TeamB = "MKOI"
+                        });
                 });
 
             modelBuilder.Entity("Exam.Models.Team", b =>
@@ -112,6 +146,36 @@ namespace Exam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "LR",
+                            Ranking = 1,
+                            Region = "Europe"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "G2",
+                            Ranking = 2,
+                            Region = "Europe"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "MKOI",
+                            Ranking = 3,
+                            Region = "Europe"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "KC",
+                            Ranking = 4,
+                            Region = "Europe"
+                        });
                 });
 
             modelBuilder.Entity("Exam.Models.User", b =>
@@ -319,6 +383,25 @@ namespace Exam.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Exam.Models.Bet", b =>
+                {
+                    b.HasOne("Exam.Models.Match", "Match")
+                        .WithMany("Bets")
+                        .HasForeignKey("MatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Exam.Models.User", "User")
+                        .WithMany("Bets")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Match");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -368,6 +451,16 @@ namespace Exam.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Exam.Models.Match", b =>
+                {
+                    b.Navigation("Bets");
+                });
+
+            modelBuilder.Entity("Exam.Models.User", b =>
+                {
+                    b.Navigation("Bets");
                 });
 #pragma warning restore 612, 618
         }

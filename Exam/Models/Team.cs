@@ -8,11 +8,11 @@ namespace Exam.Models
 
         [Required]
         [StringLength(10)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [StringLength(20)]
-        public string Region { get; set; }
+        public string Region { get; set; } = null!;
 
         [Range(1, 12)]
         public int Ranking { get; set; }

@@ -1,23 +1,23 @@
-﻿@model Bet
+﻿@model BetFormViewModel
+
+@{
+    ViewData["Title"] = "Edit Bet";
+}
 
 <div class="bet-crud-wrapper">
-    <h2 class="bet-crud-title">Edit Bet</h2>
+    <h2 class="bet-crud-title">Edit Bet: @Model.TeamA vs @Model.TeamB</h2>
 
     <form asp-action="Edit" method="post" class="bet-crud-form">
-        <input type="hidden" asp-for="Id" />
-
-        <label>Team</label>
-        <select asp-for="Team">
-            <option value="@ViewBag.TeamA">@ViewBag.TeamA</option>
-            <option value="@ViewBag.TeamB">@ViewBag.TeamB</option>
-        </select>
-
-        <label>Amount</label>
-        <input asp-for="Amount" />
+        <partial name="_BetFormFields" model="Model" />
 
         <div class="bet-crud-actions">
             <button type="submit" class="bet-btn-save">Save</button>
             <a asp-action="Delete" asp-route-id="@Model.Id" class="bet-btn-delete">Delete</a>
+            <a asp-action="Index" class="bet-btn-cancel">Cancel</a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

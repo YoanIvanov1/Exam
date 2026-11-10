@@ -1,23 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Exam.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Exam.Services.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Exam.Controllers
 {
     public class TeamsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITeamService _teamService;
 
-        public TeamsController(ApplicationDbContext context)
+        public TeamsController(ITeamService teamService)
         {
-            _context = context;
+            _teamService = teamService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var teams = await _context.Teams
-                .OrderBy(t => t.Ranking)
-                .ToListAsync();
+            var teams = await _teamService.GetAllAsync();
 
             return View(teams);
         }

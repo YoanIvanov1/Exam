@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif');
+﻿@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif');
 
 /* ============================
    GLOBAL RESET & BASE
@@ -753,6 +753,7 @@ body {
     margin-top: 0.8rem;
     display: flex;
     justify-content: flex-end;
+    gap: 0.6rem;
 }
 
 .edit-btn {
@@ -887,4 +888,8 @@ body {
     line-height: 1.6;
     color: #f7e7b0;
     border: 1px solid rgba(245, 216, 138, 0.3);
+}
+
+.footer .watermark a {
+    color: inherit;
 }

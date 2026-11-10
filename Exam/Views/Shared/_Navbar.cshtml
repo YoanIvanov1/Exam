@@ -15,9 +15,10 @@
         {
             var user = await UserManager.GetUserAsync(User);
 
+            <li class="item"><a asp-controller="Bets" asp-action="Index" class="item-link">My Bets</a></li>
             <li class="item">
                 <a asp-controller="Account" asp-action="Profile" class="item-link">
-                    Profile (@user.WalletBalance tokens)
+                    Profile (@user?.WalletBalance tokens)
                 </a>
             </li>
         }

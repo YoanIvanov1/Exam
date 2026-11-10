@@ -1,55 +1,48 @@
-﻿using Exam.Data;
-using Exam.Models;
+﻿using Exam.Models;
+using Exam.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-public class AccountController : Controller
+namespace Exam.Controllers
 {
-    private readonly UserManager<User> _userManager;
-    private readonly ApplicationDbContext _context;
-    private readonly SignInManager<User> _signInManager;
-
-    public AccountController(
-        UserManager<User> userManager,
-        ApplicationDbContext context,
-        SignInManager<User> signInManager)
+    [Authorize]
+    public class AccountController : Controller
     {
-        _userManager = userManager;
-        _context = context;
-        _signInManager = signInManager;
-    }
+        private readonly IAccountService _accountService;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-    // GET: Profile page
-    public async Task<IActionResult> Profile()
-    {
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user == null)
+        public AccountController(
+            IAccountService accountService,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
-            return RedirectToPage("/Account/Login", new { area = "Identity" });
+            _accountService = accountService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        var bets = await _context.Bets
-            .Where(b => b.UserId == user.Id)
-            .OrderByDescending(b => b.PlacedAt)
-            .ToListAsync();
-
-        var model = new ProfileViewModel
+        // GET: Profile page
+        public async Task<IActionResult> Profile()
         {
-            Email = user.Email,
-            WalletBalance = user.WalletBalance,
-            Bets = bets
-        };
+            var model = await _accountService.GetProfileAsync(_userManager.GetUserId(User)!);
 
-        return View(model);
-    }
+            if (model == null)
+            {
+                return NotFound();
+            }
 
-    // POST: Logout
-    [HttpPost]
-    public async Task<IActionResult> Logout()
-    {
-        await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "Home");
+            return View(model);
+        }
+
+        // POST: Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
